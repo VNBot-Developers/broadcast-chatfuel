@@ -17,15 +17,14 @@ broadcast(options).then(...)
 ```
 __Argument__
 
- *`options`: is an `object` or `array` of `object`. 
+ *`options`: is an `object` or `array` of `object`.  
  
-
  *`object`:
-
+     
  *`userID`: userID.
-
+       
  *`blockName`: name of block chatfuel.
-
+       
  *`attributes`: an `object` of many.
 
 *Example:*

@@ -1,0 +1,23 @@
+{
+  "name": "broadcast-chatfuel",
+  "version": "1.0.1",
+  "description": "Simple package to post broadcast chatfuel",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Notekunn/broadcast-chatfuel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Notekunn/broadcast-chatfuel/issues"
+  },
+  "homepage": "https://github.com/Notekunn/broadcast-chatfuel#readme",
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+}

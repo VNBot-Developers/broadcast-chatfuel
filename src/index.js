@@ -13,18 +13,28 @@ module.exports = (config) => {
     expectedParameters.forEach(e => {
         if (!config[e]) throw new Error(`Config object must be require ${e}`)
     })
-
-    return function (options, callback) {      
-        if (options.userID) options = new Array(options);
-        allPromise = options.map(option => request.post({
+    const sendBroadcast = (option) => request.post({
             url: makeChatfuelBroadcastApi(config.botID, option.userID),
             qs: { ...option.attributes, chatfuel_token: config.token, chatfuel_block_name: option.blockName },
             headers: {
                 'Content-Type': 'application/json',
             },
             json: true,
-        }))
-        return Promise.all(allPromise).then(results=> Promise.resolve(results.map(result => result.success))).catch(e => Promise.resolve(e.error.success))
+        })
+        .then(e => true)
+        .catch(e => Promise.resolve(false));
+    const waitSync = (ms) =>{
+        let date = (new Date()).getTime();
+        while((new Date()).getTime() - date < ms);
+    }
+    return async function(options, callback) {
+        let result = new Object();
+        if (options.userID) options = new Array(options);
+        if (typeof option == 'object') return false;
+        for (let i = 0; i < options.length; i++) {
+            result[options[i].userID] = await sendBroadcast(options[i]);
+            waitSync(1000);
+        }
+        return result;
     }
 }
-

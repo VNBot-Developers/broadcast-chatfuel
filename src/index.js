@@ -33,7 +33,7 @@ module.exports = (config) => {
         if (typeof option == 'object') return false;
         for (let i = 0; i < options.length; i++) {
             result[options[i].userID] = await sendBroadcast(options[i]);
-            waitSync(1000);
+            waitSync(3000);
         }
         return result;
     }
